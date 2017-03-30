@@ -22,7 +22,7 @@ class RepositoryHandlerIni extends RepositoryHandler {
     return $setConfig;  
  };
  public function get_config_value($key){
- 	return $this->$config_data[$key];
+ 	return $this->$config_data($key);
  }
  public function get_config_subtype(){
  	return $this->get_config_value(CONFIG_SUBTYPE);
