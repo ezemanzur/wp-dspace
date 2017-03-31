@@ -1,25 +1,28 @@
 <?php  
 
 abstract class RepositoryHandler {
+
 private $config_file, $config_data, $config_subtype;
- private setConfigData($config_data){
+ 
+
+private setConfigData($config_data){
  	$this->$config_data=$config_data;
  	return $this;
  }	
- private getConfigData(){
- 	return $this->$config_data;
- }
- abstract public function loadConfig($name="",$file_path="");
+
+ 
+
+abstract public function loadConfig($name="",$file_path="");
  /** 
    * Se consulta la configuración por campo dada una clave ej.  $urlBase=get_config_value('urlBase').
 **/
- abstract public function get_config_value($key);
- abstract public function get_config_subtype();
+abstract public function get_config_value($key);
+abstract public function get_config_subtype();
 	/** 
      * Retorna un array para la configuración por defaul en el que se encuentran los subtipos que soporta el repositorio (sedici)
      **/
 
- private function defaulSupportedType(){
+private function defaulSupportedType(){
  	return  array(
  					'article' => 'Articulo',
                  	'conference_document' => 'Documento de conferencia',    
