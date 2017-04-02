@@ -1,5 +1,7 @@
 <?php  
-define ('CONFIG_' , 'config_');
+
+define ('PREFIX_CONFIG_FILE' , 'config_');
+define ('CONFIG_FILE_EXTENSION','ini');
 define ('CONFIG_SUBTYPE' , 'supportedType');
 /** 
    * La clase RepositoryHandlerIni es una instancia de RepositoryHandler en la que las configuraciones que se cargan son desde archivos de extensión .ini
@@ -19,20 +21,27 @@ class RepositoryHandlerIni extends RepositoryHandler {
 
  public function loadConfig($name="",$file_path=""){
     
-    if (!empty($file_path)) 
-    	$setConfig=parse_ini_file($file_path);
-    else{
-    	$name=CONFIG_.$name.'.ini';
-    	$setConfig=parse_ini_file($name);
-    }
-    return $setConfig;  //$setCongfig retorna falso si no carga el archivo
+
+    if ( empty($name) && empty($file_path) )
+    	$config_data = $this->loadDefaultConfig();
+    else { 
+		
+		// check whether the name of the file to parse is explicit or must be guessed
+		$file_name = empty($file_path) ? PREFIX_CONFIG_FILE . $name.'.'.CONFIG_FILE_EXTENSION : file_path;
+	
+		$config_data = ( new ConfigIniParser($file_name) )->loadConfig();
+	}
     
+    $this->setConfigData($config_data);
+    return $setConfig;   //FIXME why this value is returned? if it's already set, it might not be necessary elsewhere
  };
- public function get_config_value($key){
- 	return $this->$config_data[$key];
+ 
+ public function getConfigValue($key) {
+ 	return $this->$config_data($key);
  }
- public function get_config_subtype(){
- 	return $this->get_config_value(CONFIG_SUBTYPE);
+ 
+ public function getConfigSubtype(){
+ 	return $this->getConfigValue(CONFIG_SUBTYPE);
  }
 }
 
