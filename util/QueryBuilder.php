@@ -38,16 +38,18 @@ public function build($urlBase="",$queryPath=""){
 	else
 		$urlQuery = empty($queryPath) ? $this->checkUrlBase($urlBase).$this->$queryPath  : $this->$urlBase.$this->checkQueryPath($queryPath);
 	foreach ($query_vars as $key => $arrayValuealue)
-		$urlQuery= $urlQuery.$key.'='.$this->recorrerArray($arrayValuealue).'&'; 
-	return $urlQuery;
+		$urlQuery= $urlQuery.$key.'='.$this->recorrerArray($arrayValuealue).'&';
+	return substr($urlQuery, 0, -1); ;
 }
-public function recorrerArray($arrayValue,$query=""){
+
+
+public function recorrerArray($arrayValue,$query="",$conectorItem=" AND ", $conectorArray=" OR "){
 	foreach ($arrayValue as $item){ 
 		if(!is_array($item)){
-			($item==end($arrayValuealue))? $query=$query.$item : $query=$query.$item." AND ";
+			($item==end($arrayValuealue))? $query=$query.$item : $query=$query.$item.$conectorItem;
 		}
 		else{
-			return recorrerArray($item,$query)." OR ";
+			return recorrerArray($item,$query).$conectorArray;
 		}
 	}
 	return $query;	
