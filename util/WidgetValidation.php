@@ -5,16 +5,18 @@ class WidgetValidation extends FormValidation{
          parent::__construct();
     }
      public function description($description,$summary){
-         if (strcmp($description, "description") == 0) {
-		if ('on' ==$summary ) {
-                    return "summary"; 
-                    // checkbox description and summary ON
-                } else { return "description"; } // checkbox description ON, summary OFF
-            } elseif (strcmp($description, "summary") == 0) {
+        if (strcmp($description, "description") == 0) {
+		    if ('on' ==$summary ) {
+                return "summary"; 
+            // checkbox description and summary ON
+            } 
+            else { return "description"; } // checkbox description ON, summary OFF
+        } 
+        elseif (strcmp($description, "summary") == 0) {
                       return "summary"; 
-                }   
-            return false;    
-        }
+        }   
+        return false;    
+    }
         
     public function limit_text($limit,$max){
             if ('on' == $limit){

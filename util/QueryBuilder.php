@@ -44,14 +44,11 @@ public function build($urlBase="",$queryPath=""){
 
 
 public function recorrerArray($arrayValue,$query="",$conectorItem=" AND ", $conectorArray=" OR "){
-	foreach ($arrayValue as $item){ 
-		if(!is_array($item)){
+	foreach ($arrayValue as $item)
+		if(!is_array($item))
 			($item==end($arrayValuealue))? $query=$query.$item : $query=$query.$item.$conectorItem;
-		}
-		else{
+		else
 			return recorrerArray($item,$query).$conectorArray;
-		}
-	}
 	return $query;	
 }
 /** 
@@ -79,4 +76,5 @@ public function get_query_vars($key){
 
 
 }
-?>
+//sedici.unlp.edu.ar/open-search/discover?rpp=100&format=atom&sort_by=3&order=desc&start=0&query=("articulo" OR " tesis") AND (sedici.subtype:"Articulo")
+//http://sedici.unlp.edu.ar/open-search/discover?rpp=100&format=atom&sort_by=3&order=desc&start=0&query=("articulo" OR " tesis") AND (sedici.subtype:"Documento de conferencia")

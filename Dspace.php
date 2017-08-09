@@ -181,7 +181,7 @@ class Dspace extends WP_Widget {
              <?php $this->show_checkbox($instance['group_year'], 'Agrupar por fecha', 'group_year'); ?>
         </p>
         <div class="conditional_config" 
-            <?php echo selected($instance['config'], 'conicet') ? 'style="display: none;"' : ''; ?>>
+            <?php echo selected($instance['config'], 'conicet') ? 'style="display: none;"' : ''; ?> >
         <p>
             <?php $this->show_checkbox($instance['group_subtype'], 'Agrupar por subtipos de documentos', 'group_subtype'); ?>
         </p>
@@ -312,9 +312,8 @@ class Dspace extends WP_Widget {
         </div>
         <?php
             return;
-        }
-        
-        /**
+        }     
+    /**
 	 * @see WP_Widget::form
 	 */         
 	function form($instance) {

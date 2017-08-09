@@ -44,5 +44,3 @@ class RepositoryHandlerIni extends RepositoryHandler {
  	return $this->getConfigValue(CONFIG_SUBTYPE);
  }
 }
-
-?>
